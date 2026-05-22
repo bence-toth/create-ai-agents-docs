@@ -1,5 +1,11 @@
 {
   "name": "default",
-  "description": "AI agent documentation starter — AGENTS.md, CONTRIBUTING.md, ADR template, architecture overview, glossary, and Claude settings",
-  "ignore": ["template.json"]
+  "description": "AI agent documentation starter — AGENTS.md with agent-specific aliases for Claude, Cursor, Gemini, and Copilot",
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
 }
