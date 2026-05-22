@@ -1,9 +1,14 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, rmSync, writeFileSync, readlinkSync, existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
-import { readTemplateConfig, substituteVariables, runPostCopyHook } from '../lib/template-config.js'
+import {
+  readTemplateConfig,
+  substituteVariables,
+  createSymlinks,
+  runPostCopyHook,
+} from '../lib/template-config.js'
 
 // ── readTemplateConfig ──────────────────────────────────────────────────────
 
@@ -80,6 +85,87 @@ describe('substituteVariables', () => {
   it('returns content unchanged when variables is undefined', () => {
     const content = '{{foo}} bar'
     assert.equal(substituteVariables(content, undefined), content)
+  })
+})
+
+// ── createSymlinks ──────────────────────────────────────────────────────────
+
+describe('createSymlinks', () => {
+  it('creates symlinks in destDir', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      writeFileSync(join(dest, 'AGENTS.md'), '# Agents')
+      const { created, skipped } = createSymlinks({ 'CLAUDE.md': 'AGENTS.md' }, dest)
+      assert.deepEqual(created, ['CLAUDE.md'])
+      assert.deepEqual(skipped, [])
+      assert.equal(readlinkSync(join(dest, 'CLAUDE.md')), 'AGENTS.md')
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
+  })
+
+  it('creates parent directories for nested symlinks', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      writeFileSync(join(dest, 'AGENTS.md'), '# Agents')
+      const { created } = createSymlinks(
+        { '.github/copilot-instructions.md': '../AGENTS.md' },
+        dest,
+      )
+      assert.deepEqual(created, ['.github/copilot-instructions.md'])
+      assert.equal(readlinkSync(join(dest, '.github/copilot-instructions.md')), '../AGENTS.md')
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
+  })
+
+  it('skips symlinks that already exist when force is false', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      writeFileSync(join(dest, 'AGENTS.md'), '# Agents')
+      writeFileSync(join(dest, 'CLAUDE.md'), '# Existing')
+      const { created, skipped } = createSymlinks({ 'CLAUDE.md': 'AGENTS.md' }, dest, false)
+      assert.deepEqual(created, [])
+      assert.deepEqual(skipped, ['CLAUDE.md'])
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
+  })
+
+  it('overwrites existing files when force is true', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      writeFileSync(join(dest, 'AGENTS.md'), '# Agents')
+      writeFileSync(join(dest, 'CLAUDE.md'), '# Existing')
+      const { created, skipped } = createSymlinks({ 'CLAUDE.md': 'AGENTS.md' }, dest, true)
+      assert.deepEqual(created, ['CLAUDE.md'])
+      assert.deepEqual(skipped, [])
+      assert.equal(readlinkSync(join(dest, 'CLAUDE.md')), 'AGENTS.md')
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
+  })
+
+  it('returns empty arrays when symlinks config is empty', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      const { created, skipped } = createSymlinks({}, dest)
+      assert.deepEqual(created, [])
+      assert.deepEqual(skipped, [])
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
+  })
+
+  it('returns empty arrays when symlinks config is undefined', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'symlink-test-'))
+    try {
+      const { created, skipped } = createSymlinks(undefined, dest)
+      assert.deepEqual(created, [])
+      assert.deepEqual(skipped, [])
+    } finally {
+      rmSync(dest, { recursive: true, force: true })
+    }
   })
 })
 
