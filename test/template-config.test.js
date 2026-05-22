@@ -1,10 +1,32 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { mkdtempSync, rmSync, writeFileSync, readlinkSync, existsSync, mkdirSync } from 'node:fs'
+import { Readable, Writable } from 'node:stream'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
+
+function makeInput(lines) {
+  const readable = new Readable({ read() {} })
+  for (const line of lines) readable.push(`${line}\n`)
+  // Push EOF so readline's question() callback fires without needing rl.close() first
+  readable.push(null)
+  return readable
+}
+
+function makeOutput() {
+  const chunks = []
+  const writable = new Writable({
+    write(chunk, _enc, cb) {
+      chunks.push(chunk.toString())
+      cb()
+    },
+  })
+  writable.getText = () => chunks.join('')
+  return writable
+}
 import {
   readTemplateConfig,
+  collectVariables,
   substituteVariables,
   createSymlinks,
   runPostCopyHook,
@@ -48,6 +70,60 @@ describe('readTemplateConfig', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }
+  })
+})
+
+// ── collectVariables ────────────────────────────────────────────────────────
+
+describe('collectVariables', () => {
+  it('returns empty object when variables is undefined', async () => {
+    const result = await collectVariables(undefined)
+    assert.deepEqual(result, {})
+  })
+
+  it('returns empty object when variables is empty', async () => {
+    const result = await collectVariables({})
+    assert.deepEqual(result, {})
+  })
+
+  it('collects a single variable from user input', async () => {
+    const streams = { input: makeInput(['Alice']), output: makeOutput() }
+    const result = await collectVariables({ name: { prompt: 'Your name' } }, streams)
+    assert.deepEqual(result, { name: 'Alice' })
+  })
+
+  it('uses the default value when user enters nothing', async () => {
+    const streams = { input: makeInput(['']), output: makeOutput() }
+    const result = await collectVariables(
+      { name: { prompt: 'Your name', default: 'World' } },
+      streams,
+    )
+    assert.deepEqual(result, { name: 'World' })
+  })
+
+  it('collects multiple variables in order', async () => {
+    const streams = { input: makeInput(['Bob', 'blue']), output: makeOutput() }
+    const result = await collectVariables(
+      {
+        name: { prompt: 'Your name' },
+        color: { prompt: 'Favorite color' },
+      },
+      streams,
+    )
+    assert.deepEqual(result, { name: 'Bob', color: 'blue' })
+  })
+
+  it('includes default hint in the prompt output', async () => {
+    const output = makeOutput()
+    const streams = { input: makeInput(['']), output }
+    await collectVariables({ name: { prompt: 'Your name', default: 'World' } }, streams)
+    assert.ok(output.getText().includes('(World)'), `expected "(World)" in: ${output.getText()}`)
+  })
+
+  it('trims whitespace from user input', async () => {
+    const streams = { input: makeInput(['  trimmed  ']), output: makeOutput() }
+    const result = await collectVariables({ name: { prompt: 'Your name' } }, streams)
+    assert.deepEqual(result, { name: 'trimmed' })
   })
 })
 
