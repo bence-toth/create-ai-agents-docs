@@ -17,7 +17,14 @@ import { green, yellow, cyan, bold, dim } from '../lib/colors.js'
 const require = createRequire(import.meta.url)
 const pkg = require('../package.json')
 
-const { template: templateArg, output: outputArg, force, help, version, interactive } = parseCliArgs()
+const {
+  template: templateArg,
+  output: outputArg,
+  force,
+  help,
+  version,
+  interactive,
+} = parseCliArgs()
 
 if (help) {
   console.log(HELP_TEXT)
