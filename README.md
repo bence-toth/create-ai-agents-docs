@@ -210,7 +210,7 @@ A template is a directory of files to scaffold. Any files in the directory are c
 
 ```
 my-template/
-├── template.json        # optional config (not copied to target)
+├── template.json   # optional config (not copied to target)
 ├── AGENTS.md
 ├── CONTRIBUTING.md
 └── docs/
