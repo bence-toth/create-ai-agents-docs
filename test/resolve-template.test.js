@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { mkdtempSync, rmdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { resolveTemplate, TEMPLATES_DIR } from '../lib/resolve-template.js'
+import { resolveTemplate, listBuiltInTemplates, TEMPLATES_DIR } from '../lib/resolve-template.js'
 
 describe('resolveTemplate', () => {
   it('resolves built-in "default" template', () => {
@@ -50,5 +50,31 @@ describe('resolveTemplate', () => {
   it('built-in name takes precedence over any path interpretation', () => {
     const result = resolveTemplate('default')
     assert.equal(result.type, 'builtin')
+  })
+})
+
+describe('listBuiltInTemplates', () => {
+  it('returns an array with at least the "default" template', () => {
+    const templates = listBuiltInTemplates()
+    assert.ok(Array.isArray(templates))
+    const names = templates.map((t) => t.name)
+    assert.ok(names.includes('default'), `expected "default" in: ${JSON.stringify(names)}`)
+  })
+
+  it('each entry has name and description fields', () => {
+    const templates = listBuiltInTemplates()
+    for (const tpl of templates) {
+      assert.ok('name' in tpl, 'missing name')
+      assert.ok('description' in tpl, 'missing description')
+      assert.equal(typeof tpl.name, 'string')
+      assert.equal(typeof tpl.description, 'string')
+    }
+  })
+
+  it('the "default" template has a non-empty description', () => {
+    const templates = listBuiltInTemplates()
+    const def = templates.find((t) => t.name === 'default')
+    assert.ok(def, '"default" template not found')
+    assert.ok(def.description.length > 0, 'expected a non-empty description')
   })
 })
