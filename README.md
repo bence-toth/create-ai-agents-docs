@@ -43,6 +43,12 @@ npx create-ai-agents-docs --output ./my-project
 A comprehensive starter for AI agent-friendly documentation. Includes:
 
 - `AGENTS.md` — instructions and context for AI agents working in the repository
+- `CLAUDE.md` — symlink to `AGENTS.md` (Claude Code)
+- `.cursorrules` — symlink to `AGENTS.md` (Cursor)
+- `.windsurfrules` — symlink to `AGENTS.md` (Windsurf)
+- `.clinerules` — symlink to `AGENTS.md` (Cline)
+- `GEMINI.md` — symlink to `AGENTS.md` (Gemini CLI)
+- `.github/copilot-instructions.md` — symlink to `AGENTS.md` (GitHub Copilot)
 - `CONTRIBUTING.md` — contribution guidelines
 - `docs/GLOSSARY.md` — project terminology
 - `docs/architecture/README.md` — architecture overview
