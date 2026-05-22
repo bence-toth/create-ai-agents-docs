@@ -96,4 +96,26 @@ describe('copyTemplate', () => {
 
     assert.equal(readFileSync(join(dest, 'README.md'), 'utf8'), 'Hello, World!')
   })
+
+  it('overwrites existing files when force is true', () => {
+    writeFileSync(join(src, 'README.md'), '# New')
+    writeFileSync(join(dest, 'README.md'), '# Existing')
+
+    const { created, skipped } = copyTemplate(src, dest, [], undefined, true)
+
+    assert.deepEqual(created, ['README.md'])
+    assert.deepEqual(skipped, [])
+    assert.equal(readFileSync(join(dest, 'README.md'), 'utf8'), '# New')
+  })
+
+  it('does not overwrite existing files when force is false', () => {
+    writeFileSync(join(src, 'README.md'), '# New')
+    writeFileSync(join(dest, 'README.md'), '# Existing')
+
+    const { created, skipped } = copyTemplate(src, dest, [], undefined, false)
+
+    assert.deepEqual(created, [])
+    assert.deepEqual(skipped, ['README.md'])
+    assert.equal(readFileSync(join(dest, 'README.md'), 'utf8'), '# Existing')
+  })
 })

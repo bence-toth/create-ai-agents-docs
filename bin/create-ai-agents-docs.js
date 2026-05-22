@@ -105,7 +105,7 @@ const transform =
 
 let created, skipped
 try {
-  ;({ created, skipped } = copyTemplate(templateDir, destDir, ignoreList, transform))
+  ;({ created, skipped } = copyTemplate(templateDir, destDir, ignoreList, transform, force))
 } catch (err) {
   cleanup()
   console.error(`Error: ${err.message}`)
