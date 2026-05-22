@@ -1,0 +1,23 @@
+{
+  "name": "monorepo",
+  "description": "AI agent docs for multi-package workspaces (Nx, Turborepo, pnpm, etc.)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-monorepo"
+    },
+    "workspaceTool": {
+      "prompt": "Which workspace tool do you use? (npm/pnpm/yarn/nx/turborepo)",
+      "default": "pnpm"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

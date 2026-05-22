@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `monorepo`
+
+For multi-package workspaces managed with Nx, Turborepo, pnpm workspaces, npm workspaces, or Yarn workspaces. Prompts for project name and workspace tool. Includes:
+
+- `AGENTS.md` — workspace map, package boundary rules, how to run commands at workspace root vs. package level, and how to add new packages
+- `CONTRIBUTING.md` — monorepo contribution workflow, cross-package change guidance
+- `docs/GLOSSARY.md` — workspace terminology (app, package, root, workspace)
+- `docs/architecture/README.md` — package dependency graph, shared packages, deployment units
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ## External templates
 
 Point `--template` at any GitHub repository or local directory that follows the template structure. GitHub repositories are cloned with `git clone --depth 1`; local paths are used directly.
