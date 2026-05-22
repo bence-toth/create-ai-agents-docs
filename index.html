@@ -522,11 +522,143 @@ npx create-ai-agents-docs --output ./my-project
 <p>A comprehensive starter for AI agent-friendly documentation. Includes:</p>
 <ul>
 <li><code>AGENTS.md</code> — instructions and context for AI agents working in the repository</li>
+<li><code>CLAUDE.md</code> — symlink to <code>AGENTS.md</code> (Claude Code)</li>
+<li><code>.cursorrules</code> — symlink to <code>AGENTS.md</code> (Cursor)</li>
+<li><code>.windsurfrules</code> — symlink to <code>AGENTS.md</code> (Windsurf)</li>
+<li><code>.clinerules</code> — symlink to <code>AGENTS.md</code> (Cline)</li>
+<li><code>GEMINI.md</code> — symlink to <code>AGENTS.md</code> (Gemini CLI)</li>
+<li><code>.github/copilot-instructions.md</code> — symlink to <code>AGENTS.md</code> (GitHub Copilot)</li>
 <li><code>CONTRIBUTING.md</code> — contribution guidelines</li>
 <li><code>docs/GLOSSARY.md</code> — project terminology</li>
 <li><code>docs/architecture/README.md</code> — architecture overview</li>
 <li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
 <li><code>.claude/settings.json</code> — Claude Code configuration</li>
+</ul>
+<h3><code>microservices</code></h3>
+<p>For distributed systems composed of multiple independently deployable services. Prompts for project name and communication pattern (REST/gRPC/events/mixed). Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — service map, data ownership rules, inter-service communication patterns, cross-service change rollout process, observability requirements</li>
+<li><code>CONTRIBUTING.md</code> — microservices contribution workflow including contract change coordination</li>
+<li><code>docs/contracts/README.md</code> — API and event contract documentation templates with versioning guidance</li>
+<li><code>docs/GLOSSARY.md</code> — distributed systems terminology (bounded context, correlation ID, idempotent, saga, service contract)</li>
+<li><code>docs/architecture/README.md</code> — service map, data ownership, communication patterns, observability stack</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>cli</code></h3>
+<p>For command-line tools and developer utilities written in TypeScript, Go, Rust, or Python. Prompts for project name and language. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — command/subcommand structure, stdout vs. stderr conventions, exit code rules, configuration resolution order, how to add a new command</li>
+<li><code>CONTRIBUTING.md</code> — CLI contribution workflow including output behavior verification</li>
+<li><code>docs/commands/README.md</code> — command reference template with flags, arguments, and exit codes</li>
+<li><code>docs/GLOSSARY.md</code> — CLI terminology (command, subcommand, flag, argument, stdout, stderr, exit code)</li>
+<li><code>docs/architecture/README.md</code> — command tree, argument parsing, configuration resolution, plugin system</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>fullstack</code></h3>
+<p>For full-stack web applications with a frontend, backend, and database in one repository. Prompts for project name, frontend framework, and backend language. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — client/server boundary rules, shared code conventions, API contract discipline, environment variable safety, database migration workflow</li>
+<li><code>CONTRIBUTING.md</code> — full-stack contribution workflow including cross-layer change guidance</li>
+<li><code>docs/GLOSSARY.md</code> — full-stack terminology (client, server, shared, API contract)</li>
+<li><code>docs/architecture/README.md</code> — system diagram, auth flow, data fetching strategy, state management, database</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>design-system</code></h3>
+<p>For component libraries and design systems built with React, Vue, Web Components, or Svelte. Prompts for project name and framework. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — component authoring guidelines, WCAG 2.1 AA accessibility requirements, design token rules, Storybook story requirements, visual regression testing</li>
+<li><code>CONTRIBUTING.md</code> — design system contribution workflow including an accessibility checklist</li>
+<li><code>docs/components/README.md</code> — component inventory with status tracking (Stable/Beta/Deprecated)</li>
+<li><code>docs/GLOSSARY.md</code> — design system terminology (tokens, variants, slots, visual regression)</li>
+<li><code>docs/architecture/README.md</code> — token hierarchy, component composition model, theming, component categories</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>data-pipeline</code></h3>
+<p>For data engineering projects — ETL/ELT pipelines, data warehouses, dbt, Airflow, Dagster, or Spark. Prompts for project name, orchestrator, and transformation tool. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — idempotency rules, backfill guidance, data quality requirements, schema change process, pipeline conventions</li>
+<li><code>CONTRIBUTING.md</code> — data pipeline contribution workflow including backfill and schema change documentation</li>
+<li><code>docs/GLOSSARY.md</code> — data engineering terminology (DAG, backfill, idempotent, raw/staging/mart layers)</li>
+<li><code>docs/architecture/README.md</code> — data flow diagram, source systems, pipeline inventory, data quality strategy</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>infrastructure</code></h3>
+<p>For Infrastructure-as-Code projects — Terraform, Pulumi, CloudFormation, or Kubernetes. Prompts for project name and IaC tool. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — plan-before-apply workflow, environment hierarchy (dev/staging/prod), state management rules, naming conventions, blast radius awareness</li>
+<li><code>CONTRIBUTING.md</code> — IaC contribution workflow including staged rollout and peer review requirements</li>
+<li><code>docs/GLOSSARY.md</code> — infrastructure terminology (blast radius, drift, idempotent, plan, state)</li>
+<li><code>docs/architecture/README.md</code> — environment topology, network layout, compute resources, IAM, secrets management</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>mobile</code></h3>
+<p>For mobile applications built with React Native, Flutter, SwiftUI, or Kotlin. Prompts for project name and framework. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — platform-specific guidance (iOS/Android), build commands, simulator/emulator setup, navigation structure, platform-conditional code patterns</li>
+<li><code>CONTRIBUTING.md</code> — mobile contribution workflow including cross-platform testing requirements</li>
+<li><code>docs/GLOSSARY.md</code> — mobile terminology (bridge, native module, simulator, emulator)</li>
+<li><code>docs/architecture/README.md</code> — navigation structure, state management, data fetching, native modules</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>library</code></h3>
+<p>For reusable packages published to a registry (npm, PyPI, crates.io, Maven). Prompts for package name and registry. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — public API rules, semantic versioning policy, deprecation process, how to add a new feature without breaking changes</li>
+<li><code>CONTRIBUTING.md</code> — library contribution workflow including breaking change guidance</li>
+<li><code>docs/api/README.md</code> — public API reference template</li>
+<li><code>docs/GLOSSARY.md</code> — library terminology (public API, consumer, breaking change)</li>
+<li><code>docs/architecture/README.md</code> — module structure, public vs. internal, extension points</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>api-service</code></h3>
+<p>For backend API services — REST or GraphQL, with a database, auth, and deployment. Prompts for project name and API style. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — API conventions, request validation rules, auth patterns, database migration workflow, how to add a new endpoint</li>
+<li><code>CONTRIBUTING.md</code> — API-focused contribution workflow including migration guidance</li>
+<li><code>docs/api/README.md</code> — endpoint documentation template</li>
+<li><code>docs/GLOSSARY.md</code> — project terminology</li>
+<li><code>docs/architecture/README.md</code> — request lifecycle, service layers, data model, auth</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>python</code></h3>
+<p>For Python projects — web apps (Django, Flask, FastAPI), scripts, data science, or libraries. Prompts for project name and package manager (pip/poetry/uv). Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — virtual environment setup, pytest usage, ruff/mypy workflow, type annotation and import style rules</li>
+<li><code>CONTRIBUTING.md</code> — Python-specific contribution workflow including the full check suite</li>
+<li><code>docs/GLOSSARY.md</code> — project terminology</li>
+<li><code>docs/architecture/README.md</code> — architecture overview</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
+</ul>
+<h3><code>monorepo</code></h3>
+<p>For multi-package workspaces managed with Nx, Turborepo, pnpm workspaces, npm workspaces, or Yarn workspaces. Prompts for project name and workspace tool. Includes:</p>
+<ul>
+<li><code>AGENTS.md</code> — workspace map, package boundary rules, how to run commands at workspace root vs. package level, and how to add new packages</li>
+<li><code>CONTRIBUTING.md</code> — monorepo contribution workflow, cross-package change guidance</li>
+<li><code>docs/GLOSSARY.md</code> — workspace terminology (app, package, root, workspace)</li>
+<li><code>docs/architecture/README.md</code> — package dependency graph, shared packages, deployment units</li>
+<li><code>docs/adr/adr-template.md</code> — Architecture Decision Record template</li>
+<li><code>.claude/settings.json</code> — Claude Code configuration</li>
+<li>Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)</li>
 </ul>
 <h2>External templates</h2>
 <p>Point <code>--template</code> at any GitHub repository or local directory that follows the template structure. GitHub repositories are cloned with <code>git clone --depth 1</code>; local paths are used directly.</p>
@@ -538,7 +670,7 @@ npx create-ai-agents-docs --template /absolute/path/to/my-template
 <p>A template is a directory of files to scaffold. Any files in the directory are copied to the target when the template is applied.</p>
 <h3>Template structure</h3>
 <pre><code>my-template/
-├── template.json        # optional config (not copied to target)
+├── template.json   # optional config (not copied to target)
 ├── AGENTS.md
 ├── CONTRIBUTING.md
 └── docs/
