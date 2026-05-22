@@ -88,4 +88,12 @@ describe('copyTemplate', () => {
 
     assert.ok(created.includes(join('.claude', 'settings.json')))
   })
+
+  it('applies transform to file contents when provided', () => {
+    writeFileSync(join(src, 'README.md'), 'Hello, {{name}}!')
+
+    copyTemplate(src, dest, [], (content) => content.replace('{{name}}', 'World'))
+
+    assert.equal(readFileSync(join(dest, 'README.md'), 'utf8'), 'Hello, World!')
+  })
 })

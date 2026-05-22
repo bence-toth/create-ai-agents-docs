@@ -4,6 +4,12 @@ import { parseCliArgs } from '../lib/cli.js'
 import { resolveTemplate } from '../lib/resolve-template.js'
 import { fetchRemoteTemplate } from '../lib/fetch-template.js'
 import { copyTemplate } from '../lib/copy-template.js'
+import {
+  readTemplateConfig,
+  collectVariables,
+  substituteVariables,
+  runPostCopyHook,
+} from '../lib/template-config.js'
 
 const { template, output } = parseCliArgs()
 const destDir = resolve(output)
@@ -32,9 +38,34 @@ if (resolved.type === 'url') {
   templateDir = resolved.path
 }
 
+let config
+try {
+  config = readTemplateConfig(templateDir)
+} catch (err) {
+  cleanup()
+  console.error(`Error: ${err.message}`)
+  process.exit(1)
+}
+
+const ignoreList = ['template.json', ...(config.ignore ?? [])]
+
+let variableValues = {}
+try {
+  variableValues = await collectVariables(config.variables)
+} catch (err) {
+  cleanup()
+  console.error(`Error: ${err.message}`)
+  process.exit(1)
+}
+
+const transform =
+  Object.keys(variableValues).length > 0
+    ? (content) => substituteVariables(content, variableValues)
+    : undefined
+
 let created, skipped
 try {
-  ;({ created, skipped } = copyTemplate(templateDir, destDir))
+  ;({ created, skipped } = copyTemplate(templateDir, destDir, ignoreList, transform))
 } catch (err) {
   cleanup()
   console.error(`Error: ${err.message}`)
@@ -51,3 +82,13 @@ for (const file of created) {
 }
 
 console.log(`\nDone. ${created.length} file(s) created in ${destDir}.`)
+
+if (config.hooks?.postCopy) {
+  console.log('\nRunning postCopy hook...')
+  try {
+    runPostCopyHook(config.hooks.postCopy, destDir)
+  } catch (err) {
+    console.error(`Error: ${err.message}`)
+    process.exit(1)
+  }
+}
