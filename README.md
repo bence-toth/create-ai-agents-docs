@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `python`
+
+For Python projects — web apps (Django, Flask, FastAPI), scripts, data science, or libraries. Prompts for project name and package manager (pip/poetry/uv). Includes:
+
+- `AGENTS.md` — virtual environment setup, pytest usage, ruff/mypy workflow, type annotation and import style rules
+- `CONTRIBUTING.md` — Python-specific contribution workflow including the full check suite
+- `docs/GLOSSARY.md` — project terminology
+- `docs/architecture/README.md` — architecture overview
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `monorepo`
 
 For multi-package workspaces managed with Nx, Turborepo, pnpm workspaces, npm workspaces, or Yarn workspaces. Prompts for project name and workspace tool. Includes:

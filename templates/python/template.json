@@ -1,0 +1,23 @@
+{
+  "name": "python",
+  "description": "AI agent docs for Python projects (Django, Flask, FastAPI, scripts, etc.)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-python-project"
+    },
+    "packageManager": {
+      "prompt": "Which package manager do you use? (pip/poetry/uv)",
+      "default": "uv"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}
