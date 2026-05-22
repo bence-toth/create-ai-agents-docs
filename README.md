@@ -55,6 +55,19 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `design-system`
+
+For component libraries and design systems built with React, Vue, Web Components, or Svelte. Prompts for project name and framework. Includes:
+
+- `AGENTS.md` — component authoring guidelines, WCAG 2.1 AA accessibility requirements, design token rules, Storybook story requirements, visual regression testing
+- `CONTRIBUTING.md` — design system contribution workflow including an accessibility checklist
+- `docs/components/README.md` — component inventory with status tracking (Stable/Beta/Deprecated)
+- `docs/GLOSSARY.md` — design system terminology (tokens, variants, slots, visual regression)
+- `docs/architecture/README.md` — token hierarchy, component composition model, theming, component categories
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `data-pipeline`
 
 For data engineering projects — ETL/ELT pipelines, data warehouses, dbt, Airflow, Dagster, or Spark. Prompts for project name, orchestrator, and transformation tool. Includes:
