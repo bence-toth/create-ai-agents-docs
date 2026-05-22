@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync, writeFileSync, readlinkSync, existsSync, mkdirSync } from 'node:fs'
+import { mkdtempSync, rmSync, writeFileSync, readlinkSync } from 'node:fs'
 import { Readable, Writable } from 'node:stream'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
