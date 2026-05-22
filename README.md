@@ -55,6 +55,19 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `api-service`
+
+For backend API services — REST or GraphQL, with a database, auth, and deployment. Prompts for project name and API style. Includes:
+
+- `AGENTS.md` — API conventions, request validation rules, auth patterns, database migration workflow, how to add a new endpoint
+- `CONTRIBUTING.md` — API-focused contribution workflow including migration guidance
+- `docs/api/README.md` — endpoint documentation template
+- `docs/GLOSSARY.md` — project terminology
+- `docs/architecture/README.md` — request lifecycle, service layers, data model, auth
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `python`
 
 For Python projects — web apps (Django, Flask, FastAPI), scripts, data science, or libraries. Prompts for project name and package manager (pip/poetry/uv). Includes:
