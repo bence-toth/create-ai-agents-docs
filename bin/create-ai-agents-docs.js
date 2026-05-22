@@ -9,6 +9,7 @@ import {
   readTemplateConfig,
   collectVariables,
   substituteVariables,
+  createSymlinks,
   runPostCopyHook,
 } from '../lib/template-config.js'
 import { promptText, promptSelect } from '../lib/prompt.js'
@@ -120,16 +121,37 @@ try {
   process.exit(1)
 }
 
+let createdLinks = []
+let skippedLinks = []
+try {
+  ;({ created: createdLinks, skipped: skippedLinks } = createSymlinks(
+    config.symlinks,
+    destDir,
+    force,
+  ))
+} catch (err) {
+  cleanup()
+  console.error(`${bold('Error:')} ${err.message}`)
+  process.exit(1)
+}
+
 cleanup()
 
 for (const file of skipped) {
   console.warn(`  ${yellow('skipped')} ${dim('(already exists):')} ${file}`)
 }
+for (const file of skippedLinks) {
+  console.warn(`  ${yellow('skipped')} ${dim('(already exists):')} ${file}`)
+}
 for (const file of created) {
   console.log(`  ${green('created:')} ${file}`)
 }
+for (const file of createdLinks) {
+  console.log(`  ${green('created:')} ${file} ${dim('→ ' + config.symlinks[file])}`)
+}
 
-console.log(`\n${green('✓')} ${bold(`${created.length} file(s) created`)} in ${cyan(destDir)}`)
+const totalCreated = created.length + createdLinks.length
+console.log(`\n${green('✓')} ${bold(`${totalCreated} file(s) created`)} in ${cyan(destDir)}`)
 
 if (config.hooks?.postCopy) {
   console.log(`\n${dim('Running postCopy hook...')}`)
