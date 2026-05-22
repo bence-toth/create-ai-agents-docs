@@ -125,10 +125,6 @@ If a variable has a `default`, it is used when the user presses Enter without ty
 - The `description` field in `template.json` is shown in interactive mode — keep it under 60 characters.
 - Test your template locally before publishing: `npx create-ai-agents-docs --template ./my-template --output /tmp/test-output`
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
-MIT
+[Licensed under MIT.](https://github.com/bence-toth/create-ai-agents-docs/blob/main/LICENSE) Do what you will.
