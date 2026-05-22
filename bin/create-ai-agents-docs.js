@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path'
-import { parseCliArgs } from '../lib/cli.js'
+import { createRequire } from 'node:module'
+import { parseCliArgs, HELP_TEXT } from '../lib/cli.js'
 import { resolveTemplate, listBuiltInTemplates } from '../lib/resolve-template.js'
 import { fetchRemoteTemplate } from '../lib/fetch-template.js'
 import { copyTemplate } from '../lib/copy-template.js'
@@ -12,7 +13,20 @@ import {
 } from '../lib/template-config.js'
 import { promptText, promptSelect } from '../lib/prompt.js'
 
-const { template: templateArg, output: outputArg, interactive } = parseCliArgs()
+const require = createRequire(import.meta.url)
+const pkg = require('../package.json')
+
+const { template: templateArg, output: outputArg, force, help, version, interactive } = parseCliArgs()
+
+if (help) {
+  console.log(HELP_TEXT)
+  process.exit(0)
+}
+
+if (version) {
+  console.log(pkg.version)
+  process.exit(0)
+}
 
 let templateName = templateArg ?? 'default'
 let outputPath = outputArg ?? process.cwd()
