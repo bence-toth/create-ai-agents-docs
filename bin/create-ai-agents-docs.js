@@ -12,6 +12,7 @@ import {
   runPostCopyHook,
 } from '../lib/template-config.js'
 import { promptText, promptSelect } from '../lib/prompt.js'
+import { green, yellow, cyan, bold, dim } from '../lib/colors.js'
 
 const require = createRequire(import.meta.url)
 const pkg = require('../package.json')
@@ -41,15 +42,15 @@ if (interactive) {
     { label: 'custom URL or path', value: '__custom__' },
   ]
 
-  const selected = await promptSelect('? Which template would you like to use?', choices)
+  const selected = await promptSelect(cyan('? Which template would you like to use?'), choices)
 
   if (selected === '__custom__') {
-    templateName = await promptText('  Enter a GitHub URL or local path')
+    templateName = await promptText(cyan('  Enter a GitHub URL or local path'))
   } else {
     templateName = selected
   }
 
-  outputPath = await promptText('? Where should we create the docs?', './docs')
+  outputPath = await promptText(cyan('? Where should we create the docs?'), './docs')
 }
 
 const destDir = resolve(outputPath)
@@ -58,7 +59,7 @@ let resolved
 try {
   resolved = resolveTemplate(templateName)
 } catch (err) {
-  console.error(`Error: ${err.message}`)
+  console.error(`${bold('Error:')} ${err.message}`)
   process.exit(1)
 }
 
@@ -71,7 +72,7 @@ if (resolved.type === 'url') {
     templateDir = fetched.path
     cleanup = fetched.cleanup
   } catch (err) {
-    console.error(`Error: ${err.message}`)
+    console.error(`${bold('Error:')} ${err.message}`)
     process.exit(1)
   }
 } else {
@@ -83,7 +84,7 @@ try {
   config = readTemplateConfig(templateDir)
 } catch (err) {
   cleanup()
-  console.error(`Error: ${err.message}`)
+  console.error(`${bold('Error:')} ${err.message}`)
   process.exit(1)
 }
 
@@ -94,7 +95,7 @@ try {
   variableValues = await collectVariables(config.variables)
 } catch (err) {
   cleanup()
-  console.error(`Error: ${err.message}`)
+  console.error(`${bold('Error:')} ${err.message}`)
   process.exit(1)
 }
 
@@ -108,27 +109,27 @@ try {
   ;({ created, skipped } = copyTemplate(templateDir, destDir, ignoreList, transform, force))
 } catch (err) {
   cleanup()
-  console.error(`Error: ${err.message}`)
+  console.error(`${bold('Error:')} ${err.message}`)
   process.exit(1)
 }
 
 cleanup()
 
 for (const file of skipped) {
-  console.warn(`  skipped (already exists): ${file}`)
+  console.warn(`  ${yellow('skipped')} ${dim('(already exists):')} ${file}`)
 }
 for (const file of created) {
-  console.log(`  created: ${file}`)
+  console.log(`  ${green('created:')} ${file}`)
 }
 
-console.log(`\nDone. ${created.length} file(s) created in ${destDir}.`)
+console.log(`\n${green('✓')} ${bold(`${created.length} file(s) created`)} in ${cyan(destDir)}`)
 
 if (config.hooks?.postCopy) {
-  console.log('\nRunning postCopy hook...')
+  console.log(`\n${dim('Running postCopy hook...')}`)
   try {
     runPostCopyHook(config.hooks.postCopy, destDir)
   } catch (err) {
-    console.error(`Error: ${err.message}`)
+    console.error(`${bold('Error:')} ${err.message}`)
     process.exit(1)
   }
 }
