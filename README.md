@@ -196,6 +196,8 @@ For multi-package workspaces managed with Nx, Turborepo, pnpm workspaces, npm wo
 
 Point `--template` at any GitHub repository or local directory that follows the template structure. GitHub repositories are cloned with `git clone --depth 1`; local paths are used directly.
 
+To build a custom template, use the [create-ai-agents-docs-template](https://github.com/bence-toth/create-ai-agents-docs-template) starter kit — it contains the default template's files as a starting point.
+
 ```sh
 npx create-ai-agents-docs --template https://github.com/org/my-template
 npx create-ai-agents-docs --template ./path/to/my-template
