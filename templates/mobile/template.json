@@ -1,0 +1,23 @@
+{
+  "name": "mobile",
+  "description": "AI agent docs for mobile apps (React Native, Flutter, Swift, Kotlin)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-mobile-app"
+    },
+    "framework": {
+      "prompt": "Which framework do you use? (React Native/Flutter/SwiftUI/Kotlin)",
+      "default": "React Native"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

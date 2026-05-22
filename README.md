@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `mobile`
+
+For mobile applications built with React Native, Flutter, SwiftUI, or Kotlin. Prompts for project name and framework. Includes:
+
+- `AGENTS.md` — platform-specific guidance (iOS/Android), build commands, simulator/emulator setup, navigation structure, platform-conditional code patterns
+- `CONTRIBUTING.md` — mobile contribution workflow including cross-platform testing requirements
+- `docs/GLOSSARY.md` — mobile terminology (bridge, native module, simulator, emulator)
+- `docs/architecture/README.md` — navigation structure, state management, data fetching, native modules
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `library`
 
 For reusable packages published to a registry (npm, PyPI, crates.io, Maven). Prompts for package name and registry. Includes:
