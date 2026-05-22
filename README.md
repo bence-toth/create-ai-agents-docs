@@ -55,6 +55,19 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `library`
+
+For reusable packages published to a registry (npm, PyPI, crates.io, Maven). Prompts for package name and registry. Includes:
+
+- `AGENTS.md` — public API rules, semantic versioning policy, deprecation process, how to add a new feature without breaking changes
+- `CONTRIBUTING.md` — library contribution workflow including breaking change guidance
+- `docs/api/README.md` — public API reference template
+- `docs/GLOSSARY.md` — library terminology (public API, consumer, breaking change)
+- `docs/architecture/README.md` — module structure, public vs. internal, extension points
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `api-service`
 
 For backend API services — REST or GraphQL, with a database, auth, and deployment. Prompts for project name and API style. Includes:

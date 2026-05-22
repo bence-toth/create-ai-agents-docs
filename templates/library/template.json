@@ -1,0 +1,23 @@
+{
+  "name": "library",
+  "description": "AI agent docs for reusable packages published to a registry",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your package name?",
+      "default": "my-library"
+    },
+    "registry": {
+      "prompt": "Which registry do you publish to? (npm/PyPI/crates.io/Maven)",
+      "default": "npm"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}
