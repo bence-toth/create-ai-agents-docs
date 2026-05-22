@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path'
 import { parseCliArgs } from '../lib/cli.js'
-import { resolveTemplate } from '../lib/resolve-template.js'
+import { resolveTemplate, listBuiltInTemplates } from '../lib/resolve-template.js'
 import { fetchRemoteTemplate } from '../lib/fetch-template.js'
 import { copyTemplate } from '../lib/copy-template.js'
 import {
@@ -10,13 +10,39 @@ import {
   substituteVariables,
   runPostCopyHook,
 } from '../lib/template-config.js'
+import { promptText, promptSelect } from '../lib/prompt.js'
 
-const { template, output } = parseCliArgs()
-const destDir = resolve(output)
+const { template: templateArg, output: outputArg, interactive } = parseCliArgs()
+
+let templateName = templateArg ?? 'default'
+let outputPath = outputArg ?? process.cwd()
+
+if (interactive) {
+  const builtIns = listBuiltInTemplates()
+  const choices = [
+    ...builtIns.map(({ name, description }) => ({
+      label: description ? `${name} — ${description}` : name,
+      value: name,
+    })),
+    { label: 'custom URL or path', value: '__custom__' },
+  ]
+
+  const selected = await promptSelect('? Which template would you like to use?', choices)
+
+  if (selected === '__custom__') {
+    templateName = await promptText('  Enter a GitHub URL or local path')
+  } else {
+    templateName = selected
+  }
+
+  outputPath = await promptText('? Where should we create the docs?', './docs')
+}
+
+const destDir = resolve(outputPath)
 
 let resolved
 try {
-  resolved = resolveTemplate(template)
+  resolved = resolveTemplate(templateName)
 } catch (err) {
   console.error(`Error: ${err.message}`)
   process.exit(1)
