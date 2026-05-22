@@ -1,0 +1,23 @@
+{
+  "name": "infrastructure",
+  "description": "AI agent docs for Infrastructure-as-Code (Terraform, Pulumi, K8s, etc.)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-infrastructure"
+    },
+    "tool": {
+      "prompt": "Which IaC tool do you use? (Terraform/Pulumi/CloudFormation/Kubernetes)",
+      "default": "Terraform"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

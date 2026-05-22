@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `infrastructure`
+
+For Infrastructure-as-Code projects — Terraform, Pulumi, CloudFormation, or Kubernetes. Prompts for project name and IaC tool. Includes:
+
+- `AGENTS.md` — plan-before-apply workflow, environment hierarchy (dev/staging/prod), state management rules, naming conventions, blast radius awareness
+- `CONTRIBUTING.md` — IaC contribution workflow including staged rollout and peer review requirements
+- `docs/GLOSSARY.md` — infrastructure terminology (blast radius, drift, idempotent, plan, state)
+- `docs/architecture/README.md` — environment topology, network layout, compute resources, IAM, secrets management
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `mobile`
 
 For mobile applications built with React Native, Flutter, SwiftUI, or Kotlin. Prompts for project name and framework. Includes:
