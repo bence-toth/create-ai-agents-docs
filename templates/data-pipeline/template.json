@@ -1,0 +1,27 @@
+{
+  "name": "data-pipeline",
+  "description": "AI agent docs for data pipelines (dbt, Airflow, Dagster, Spark, etc.)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-data-pipeline"
+    },
+    "orchestrator": {
+      "prompt": "Which orchestrator do you use? (Airflow/Dagster/Prefect/none)",
+      "default": "Airflow"
+    },
+    "transformationTool": {
+      "prompt": "Which transformation tool do you use? (dbt/Spark/SQL/Python)",
+      "default": "dbt"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

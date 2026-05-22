@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `data-pipeline`
+
+For data engineering projects — ETL/ELT pipelines, data warehouses, dbt, Airflow, Dagster, or Spark. Prompts for project name, orchestrator, and transformation tool. Includes:
+
+- `AGENTS.md` — idempotency rules, backfill guidance, data quality requirements, schema change process, pipeline conventions
+- `CONTRIBUTING.md` — data pipeline contribution workflow including backfill and schema change documentation
+- `docs/GLOSSARY.md` — data engineering terminology (DAG, backfill, idempotent, raw/staging/mart layers)
+- `docs/architecture/README.md` — data flow diagram, source systems, pipeline inventory, data quality strategy
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `infrastructure`
 
 For Infrastructure-as-Code projects — Terraform, Pulumi, CloudFormation, or Kubernetes. Prompts for project name and IaC tool. Includes:
