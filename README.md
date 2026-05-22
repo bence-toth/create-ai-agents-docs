@@ -55,6 +55,19 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `microservices`
+
+For distributed systems composed of multiple independently deployable services. Prompts for project name and communication pattern (REST/gRPC/events/mixed). Includes:
+
+- `AGENTS.md` — service map, data ownership rules, inter-service communication patterns, cross-service change rollout process, observability requirements
+- `CONTRIBUTING.md` — microservices contribution workflow including contract change coordination
+- `docs/contracts/README.md` — API and event contract documentation templates with versioning guidance
+- `docs/GLOSSARY.md` — distributed systems terminology (bounded context, correlation ID, idempotent, saga, service contract)
+- `docs/architecture/README.md` — service map, data ownership, communication patterns, observability stack
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `cli`
 
 For command-line tools and developer utilities written in TypeScript, Go, Rust, or Python. Prompts for project name and language. Includes:
