@@ -1,0 +1,11 @@
+test/
+coverage/
+docs/
+.github/
+.prettierrc.json
+eslint.config.js
+*.test.js
+node_modules/
+AGENTS.md
+CONTRIBUTING.md
+PLAN.md
