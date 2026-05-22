@@ -1,0 +1,23 @@
+{
+  "name": "cli",
+  "description": "AI agent docs for command-line tools and developer utilities",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-cli"
+    },
+    "language": {
+      "prompt": "Which language do you use? (TypeScript/Go/Rust/Python)",
+      "default": "TypeScript"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

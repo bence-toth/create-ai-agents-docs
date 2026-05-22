@@ -55,6 +55,19 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `cli`
+
+For command-line tools and developer utilities written in TypeScript, Go, Rust, or Python. Prompts for project name and language. Includes:
+
+- `AGENTS.md` — command/subcommand structure, stdout vs. stderr conventions, exit code rules, configuration resolution order, how to add a new command
+- `CONTRIBUTING.md` — CLI contribution workflow including output behavior verification
+- `docs/commands/README.md` — command reference template with flags, arguments, and exit codes
+- `docs/GLOSSARY.md` — CLI terminology (command, subcommand, flag, argument, stdout, stderr, exit code)
+- `docs/architecture/README.md` — command tree, argument parsing, configuration resolution, plugin system
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `fullstack`
 
 For full-stack web applications with a frontend, backend, and database in one repository. Prompts for project name, frontend framework, and backend language. Includes:
