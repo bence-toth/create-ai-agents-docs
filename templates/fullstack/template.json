@@ -1,0 +1,27 @@
+{
+  "name": "fullstack",
+  "description": "AI agent docs for full-stack web apps (frontend + backend + database)",
+  "variables": {
+    "projectName": {
+      "prompt": "What is your project name?",
+      "default": "my-fullstack-app"
+    },
+    "frontend": {
+      "prompt": "Which frontend framework do you use? (React/Vue/Svelte/Angular)",
+      "default": "React"
+    },
+    "backend": {
+      "prompt": "Which backend language/framework do you use? (Node/Python/Go/Ruby)",
+      "default": "Node"
+    }
+  },
+  "ignore": ["template.json"],
+  "symlinks": {
+    "CLAUDE.md": "AGENTS.md",
+    ".cursorrules": "AGENTS.md",
+    ".windsurfrules": "AGENTS.md",
+    ".clinerules": "AGENTS.md",
+    "GEMINI.md": "AGENTS.md",
+    ".github/copilot-instructions.md": "../AGENTS.md"
+  }
+}

@@ -55,6 +55,18 @@ A comprehensive starter for AI agent-friendly documentation. Includes:
 - `docs/adr/adr-template.md` — Architecture Decision Record template
 - `.claude/settings.json` — Claude Code configuration
 
+### `fullstack`
+
+For full-stack web applications with a frontend, backend, and database in one repository. Prompts for project name, frontend framework, and backend language. Includes:
+
+- `AGENTS.md` — client/server boundary rules, shared code conventions, API contract discipline, environment variable safety, database migration workflow
+- `CONTRIBUTING.md` — full-stack contribution workflow including cross-layer change guidance
+- `docs/GLOSSARY.md` — full-stack terminology (client, server, shared, API contract)
+- `docs/architecture/README.md` — system diagram, auth flow, data fetching strategy, state management, database
+- `docs/adr/adr-template.md` — Architecture Decision Record template
+- `.claude/settings.json` — Claude Code configuration
+- Agent symlinks (CLAUDE.md, .cursorrules, .windsurfrules, .clinerules, GEMINI.md, .github/copilot-instructions.md)
+
 ### `design-system`
 
 For component libraries and design systems built with React, Vue, Web Components, or Svelte. Prompts for project name and framework. Includes:
