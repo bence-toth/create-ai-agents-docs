@@ -58,7 +58,7 @@ if (interactive) {
     templateName = selected
   }
 
-  outputPath = await promptText(cyan('? Where should we create the docs?'), './docs')
+  outputPath = await promptText(cyan('? Where should we create the files?'), '.')
 }
 
 const destDir = resolve(outputPath)
